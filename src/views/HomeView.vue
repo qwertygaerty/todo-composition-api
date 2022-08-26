@@ -13,7 +13,7 @@
       <h2>Completed</h2>
       <ol class="gradient-list">
         <li v-for="(task, index) in tasks.complete" :key="index">
-          <Task :task="task"></Task>
+          <Task :task="task" @change-position="tossTask" @remove-task="removeTask"></Task>
         </li>
       </ol>
     </div>
@@ -24,19 +24,8 @@
 <script lang="ts">
 import {defineComponent, ref} from 'vue';
 import Task from "@/components/Task.vue"
-
-
-interface ToDo {
-  name: string;
-  id: number;
-  active: boolean;
-}
-
-interface ToDos {
-  active: ToDo[];
-  complete: ToDo[];
-}
-
+import ToDo from "@/interfaces/ToDoInterface";
+import ToDos from "@/interfaces/ToDoSInterface";
 
 export default defineComponent({
   name: 'HomeView',
@@ -61,11 +50,14 @@ export default defineComponent({
 
       if (task.active) {
         tasks.value.active.splice(tasks.value.active.indexOf(task), 1);
+        task.active = false;
         tasks.value.complete.push(task);
+        return;
       }
 
       if (!task.active) {
         tasks.value.complete.splice(tasks.value.active.indexOf(task), 1);
+        task.active = true;
         tasks.value.active.push(task);
       }
     };

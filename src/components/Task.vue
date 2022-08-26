@@ -2,26 +2,30 @@
   <div class="task">
     <p class="task__name">{{ task.name }}</p>
     <div class="buttons">
-      <button class="button button__complete" @click="changePosition(task)">✔</button>
+      <button class="button button__complete" @click="changePosition(task)" v-if="task.active">✔</button>
       <button class="button button__delete" @click="removeTask(task)">&#x2715;</button>
     </div>
   </div>
 </template>
 
-<script>
-import {defineComponent, ref} from 'vue';
+<script lang="ts">
+import {defineComponent} from 'vue';
+import ToDo from "@/interfaces/ToDoInterface";
+import ToDos from "@/interfaces/ToDoSInterface";
+
+
 export default defineComponent({
   name: "TaskToDo",
   props: {
     task: Object,
   },
-  emits: ['change-position'],
+  emits: ['change-position', 'remove-task'],
   setup( props, { emit } ) {
-    let changePosition = (task) => {
+    let changePosition = (task: ToDo) => {
       emit('change-position', task)
     }
 
-    let removeTask = (task) => {
+    let removeTask = (task: ToDo) => {
       emit('remove-task', task)
     }
 
