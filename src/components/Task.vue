@@ -2,7 +2,11 @@
   <div class="task">
     <p class="task__name">{{ task.name }}</p>
     <div class="buttons">
+
+      {{task.active}}
+
       <button class="button button__complete" @click="changePosition(task)" v-if="task.active">✔</button>
+      <button class="button button__active" @click="changePosition(task)" v-if="!task.active">&lt;</button>
       <button class="button button__delete" @click="removeTask(task)">&#x2715;</button>
     </div>
   </div>
@@ -64,6 +68,10 @@ $yellow: rgba(15, 220, 50, 0.69);
 
 .button__complete {
   background: $yellow;
+}
+
+.button__active {
+  background: #1a81ff;
 }
 
 .button__delete {

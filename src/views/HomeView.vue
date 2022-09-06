@@ -56,10 +56,12 @@ export default defineComponent({
       }
 
       if (!task.active) {
-        tasks.value.complete.splice(tasks.value.active.indexOf(task), 1);
+        tasks.value.complete.splice(tasks.value.complete.indexOf(task), 1);
         task.active = true;
         tasks.value.active.push(task);
+        return;
       }
+
     };
 
     let removeTask = (task: ToDo) => {
