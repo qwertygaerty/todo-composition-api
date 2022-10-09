@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 
@@ -14,9 +14,25 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 // @ts-ignore
 import Prism from 'prismjs';
 
+import PrimeVue from 'primevue/config';
+
+import InputText from 'primevue/inputtext';
+import Button from 'primevue/button';
+
+import 'primevue/resources/themes/mdc-light-indigo/theme.css';
+import 'primevue/resources/primevue.min.css';
+import 'primeicons/primeicons.css';
+
 VueMarkdownEditor.use(vuepressTheme, {
     Prism,
 });
 
 
-createApp(App).use(router).use(VueMarkdownEditor).mount('#app')
+const app = createApp(App);
+
+app.component('InputText', InputText);
+// eslint-disable-next-line vue/multi-word-component-names
+app.component('Button', Button);
+
+app.use(router).use(VueMarkdownEditor).use(PrimeVue, {ripple: true}).mount('#app')
+

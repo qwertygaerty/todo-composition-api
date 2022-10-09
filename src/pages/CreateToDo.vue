@@ -2,6 +2,11 @@
   <div class="todo">
     <div class="todo__container">
       <h2>Create</h2>
+
+      <div>
+        <Button label="Сохранить" />
+      </div>
+
       <div class="todo__editor">
         <v-md-editor v-model="todoMD"></v-md-editor>
       </div>
@@ -24,7 +29,6 @@ let todoMD = ref('')
 .todo__container {
   width: 55%;
 }
-
 
 
 </style>
