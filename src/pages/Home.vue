@@ -1,18 +1,9 @@
 <template>
   <div class="todo">
     <div class="todo__active">
-      <h2>Active</h2>
+      <h2>ToDoEs</h2>
       <ol class="gradient-list">
         <li v-for="(task, index) in tasks.active" :key="index">
-          <Task :task="task" @change-position="tossTask" @remove-task="removeTask"></Task>
-        </li>
-      </ol>
-    </div>
-
-    <div class="todo__clothed">
-      <h2>Completed</h2>
-      <ol class="gradient-list">
-        <li v-for="(task, index) in tasks.complete" :key="index">
           <Task :task="task" @change-position="tossTask" @remove-task="removeTask"></Task>
         </li>
       </ol>
@@ -28,7 +19,7 @@ import ToDo from "@/interfaces/ToDoInterface";
 import ToDos from "@/interfaces/ToDoSInterface";
 
 export default defineComponent({
-  name: 'HomeView',
+  name: 'HomePage',
   components: {
     Task
   },
@@ -101,10 +92,10 @@ $white: #fafafa;
   box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05), 0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
 }
 
-.todo__active, .todo__clothed {
+.todo__active, .todo__clothed, .todo__container {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 55%;
 }
 
 ol.gradient-list {
